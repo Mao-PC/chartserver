@@ -1,0 +1,45 @@
+//指定protobuf语法版本
+syntax = "proto3";
+
+//包名
+option java_package = "com.amo.chartclient.proto";
+//源文件类名
+option java_outer_classname = "ChartMsgProto";
+
+message ChartMsg {
+
+    // 定义一个枚举
+    enum DataType {
+        HeartBeat = 0;
+        RespType = 1;
+        UserType = 2;
+    }
+
+    // 标识哪个类型
+    DataType type = 1;
+
+    oneof dataBody {
+        Resp resp = 2;
+        User user = 3;
+    }
+}
+
+// 给客户端的响应
+message Resp {
+
+    bool state = 1;
+
+    string msg = 2;
+
+    repeated Data data = 3;
+}
+
+message Data {
+    map<string, string> data = 1;
+}
+
+// 用户
+message User {
+    string username = 1;
+    string password = 2;
+}

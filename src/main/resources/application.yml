@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:33306/chart?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 20
+      auto-commit: true
+      idle-timeout: 6000000
+      connection-timeout: 6000000
+      max-lifetime: 12000000
+      connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      enabled: true #是否启用http上传处理
+      max-request-size: 200MB #最大请求文件的大小
+      max-file-size: 200MB #设置单个文件最大长度
+  jpa:
+    show-sql: true
