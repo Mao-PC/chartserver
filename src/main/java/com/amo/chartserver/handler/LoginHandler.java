@@ -42,7 +42,10 @@ public class LoginHandler extends SimpleChannelInboundHandler<ChartMsgProto.Char
             }
             resp.build();
             msgBuilder.setResp(resp);
-            ctx.channel().writeAndFlush(resp.build());
+            ctx.channel().writeAndFlush(msgBuilder.build());
+        } else {
+            // 通知执行下一个InboundHandler
+            ctx.fireChannelRead(chartMsg);
         }
     }
 }

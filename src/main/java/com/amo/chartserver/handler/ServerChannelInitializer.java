@@ -14,8 +14,8 @@ public class ServerChannelInitializer extends ChannelInitializer<SocketChannel> 
         ChannelPipeline pipeline = socketChannel.pipeline();
         pipeline.addLast("encoder", new ProtobufEncoder());
         pipeline.addLast("decoder", new ProtobufDecoder(ChartMsgProto.ChartMsg.getDefaultInstance()));
-        pipeline.addLast(new LoginHandler());
         pipeline.addLast(new IdleStateHandler(30, 60, 60 * 30));
         pipeline.addLast(new HeartBeatHandler());
+        pipeline.addLast(new LoginHandler());
     }
 }
